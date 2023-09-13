@@ -136,7 +136,9 @@ function loadData(){
     linkData = d.links
     console.log("linkData is ",linkData)
 
-    numPartitions=0
+    // numPartitions=0
+    numPartitions=7
+
     //create original links
     linkData.forEach(function(link) {
       var sourceName= link.source
@@ -147,9 +149,9 @@ function loadData(){
 
       //create parent links
       nodes.forEach(function(node) {
-        if (node.partition > numPartitions){
-          numPartitions= node.partition
-        }
+        // if (node.partition > numPartitions){
+        //   numPartitions= node.partition
+        // }
         if (node.name == link.source){
           nodeSource = node
         }
@@ -1284,24 +1286,25 @@ function setup(callOrigin) {
       d3.selectAll("#suggestionsDiv").style("display","none")
       //find com.ibm.websphere.samples.daytrader.entities.HoldingDataBean
       node.each(function(d) {
-        if (d.name == "com.ibm.websphere.samples.daytrader.entities.HoldingDataBean"){ //change node partition
-          d.partition="Account" //destination partition
+        // if (d.name == "com.ibm.websphere.samples.daytrader.entities.HoldingDataBean"){ //change node partition
+        if (d.name == "OrderDataJSF"){ //change node partition
+          d.partition="Orders" //destination partition
           if (d.children) {//if class,
             //change all children's partitions to this partition
             d.children.forEach(function(childNode){
-              childNode.partition = "Account"
+              childNode.partition = "Orders"
             })
           }
         //find node from other partition
         var newX
         var newY
         nodes.forEach(function(n){
-          if (n.name == "com.ibm.websphere.samples.daytrader.entities.AccountDataBean"){
+          if (n.name == "TradeActionProducer"){
               console.log("found n ",n)
               newX = n.x
               newY = n.y
               nodes.forEach(function(n){
-                if (n.name == "com.ibm.websphere.samples.daytrader.entities.HoldingDataBean"){
+                if (n.name == "OrderDataJSF"){
                   console.log("newX is ",newX)
                   console.log("newY is ",newY)
                 }
@@ -1326,7 +1329,8 @@ function setup(callOrigin) {
       this_node.y = d3.event.y;
       //flag to differentiate between drag and click event
       if (isDragged == 1) {
-        if (this_node.type=="ClassNode"){
+        // if (this_node.type=="ClassNode"){
+        if (this_node.name=="TradeConfig"){
           d3.selectAll("#suggestionsDiv").style("display","block")
         }
         node.each(function(d) {
@@ -2172,6 +2176,24 @@ function polygonGenerator(groupId) {
 
       // document.getElementById("partitionNameEdit").placeholder = d['groupId'] //change partition name placeholder
       document.getElementById("partitionNameEdit").innerText = d['groupId'] //change partition name placeholder
+      if (d['groupId'] == "Account"){ //change partition description placeholder
+        document.getElementById("partitionDescription").innerText = "The Account Partition focuses on user registration, authentication, and profile management. "
+      }
+      else if (d['groupId'] == "Market"){
+        document.getElementById("partitionDescription").innerText = "The Market Partition focuses on market "
+      }
+      else if (d['groupId'] == "Quote"){
+        document.getElementById("partitionDescription").innerText = "The Quote Partition focuses on "
+      }
+      else if (d['groupId'] == "data"){
+        document.getElementById("partitionDescription").innerText = "The data Partition focuses on "
+      }
+      else if (d['groupId'] == "Trade"){
+        document.getElementById("partitionDescription").innerText = "The Trade Partition focuses on "
+      }
+      else if (d['groupId'] == "Ping"){
+        document.getElementById("partitionDescription").innerText = "The Ping Partition focuses on "
+      }
       var oldPartitionName= d['groupId']
 
       // document.getElementById("partitionNameEdit").appendChild(document.createTextNode(d['groupId']));

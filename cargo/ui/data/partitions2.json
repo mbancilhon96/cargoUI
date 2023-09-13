@@ -13,7 +13,7 @@
             },
             {
                "name":"onOpen",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
@@ -34,7 +34,7 @@
             },
             {
                "name":"<init>",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
@@ -88,7 +88,7 @@
             },
             {
                "name":"getInstance",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.012244897959183675,
                "type":"MethodNode"
             }
@@ -118,12 +118,12 @@
          "children":[
             {
                "name":"doGet",
-               "partition":6,
+               "partition":"Ping",
                "centrality":0,
                "type":"MethodNode"
             }
          ],
-         "partition":6,
+         "partition":"Ping",
          "uncertainity":0
       },
       {
@@ -133,12 +133,12 @@
          "children":[
             {
                "name":"doPost",
-               "partition":6,
+               "partition":"Ping",
                "centrality":0,
                "type":"MethodNode"
             }
          ],
-         "partition":6,
+         "partition":"Ping",
          "uncertainity":0
       },
       {
@@ -238,7 +238,7 @@
             },
             {
                "name":"getQuote",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             },
@@ -262,7 +262,7 @@
             },
             {
                "name":"getHolding",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.012244897959183675,
                "type":"MethodNode"
             },
@@ -301,19 +301,19 @@
             },
             {
                "name":"trace",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.2163265306122449,
                "type":"MethodNode"
             },
             {
                "name":"getTrace",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.012244897959183675,
                "type":"MethodNode"
             },
             {
                "name":"getActionTrace",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.05306122448979592,
                "type":"MethodNode"
             }
@@ -328,7 +328,7 @@
          "children":[
             {
                "name":"updateConfig",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.028571428571428574,
                "type":"MethodNode"
             },
@@ -339,7 +339,7 @@
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":0.5
       },
       {
@@ -349,7 +349,7 @@
          "children":[
             {
                "name":"cancelOrder",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             },
@@ -361,19 +361,19 @@
             },
             {
                "name":"postConstruct",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             },
             {
                "name":"completeOrder",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             },
             {
                "name":"resetTrade",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             },
@@ -391,18 +391,18 @@
             },
             {
                "name":"pingTwoPhase",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.012244897959183675,
                "type":"MethodNode"
             },
             {
                "name":"investmentReturn",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":1.777777777777778
       },
       {
@@ -412,37 +412,37 @@
          "children":[
             {
                "name":"commit",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.020408163265306124,
                "type":"MethodNode"
             },
             {
                "name":"getAccountProfileDataFromResultSet",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
             {
                "name":"getOrderData",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             },
             {
                "name":"updateQuotePriceVolumeInt",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.0163265306122449,
                "type":"MethodNode"
             },
             {
                "name":"recreateDBTables",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
             {
                "name":"getInGlobalTxn",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
@@ -454,19 +454,19 @@
             },
             {
                "name":"getAccountDataFromResultSet",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.028571428571428574,
                "type":"MethodNode"
             },
             {
                "name":"getHoldingDataFromResultSet",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             },
             {
                "name":"removeHolding",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
@@ -478,7 +478,7 @@
             },
             {
                "name":"rollBack",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             },
@@ -501,7 +501,7 @@
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":1.8285714285714287
       },
       {
@@ -568,7 +568,7 @@
          "children":[
             {
                "name":"rndBigDecimal",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.012244897959183675,
                "type":"MethodNode"
             },
@@ -580,19 +580,19 @@
             },
             {
                "name":"incrementSellDeficit",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
             {
                "name":"getLongRun",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.012244897959183675,
                "type":"MethodNode"
             },
             {
                "name":"useRemoteEJBInterface",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.020408163265306124,
                "type":"MethodNode"
             },
@@ -610,19 +610,19 @@
             },
             {
                "name":"getUpdateQuotePrices",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
             {
                "name":"getPage",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             },
             {
                "name":"getScenarioAction",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             },
@@ -679,12 +679,12 @@
          "children":[
             {
                "name":"validate",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":0
       },
       {
@@ -694,18 +694,18 @@
          "children":[
             {
                "name":"getNextID",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
             {
                "name":"allocNewBlock",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":0
       },
       {
@@ -715,12 +715,12 @@
          "children":[
             {
                "name":"parseDDLToBuffer",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":0
       },
       {
@@ -730,18 +730,18 @@
          "children":[
             {
                "name":"onDataAvailable",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
             {
                "name":"closeConnection",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":0
       },
       {
@@ -751,12 +751,12 @@
          "children":[
             {
                "name":"onMessage",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":0
       },
       {
@@ -766,18 +766,18 @@
          "children":[
             {
                "name":"setup",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.012244897959183675,
                "type":"MethodNode"
             },
             {
                "name":"updateMarketSummary",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":0
       },
       {
@@ -787,12 +787,12 @@
          "children":[
             {
                "name":"performTask",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.0163265306122449,
                "type":"MethodNode"
             }
          ],
-         "partition":"Market",
+         "partition":"Orders",
          "uncertainity":0
       },
       {
@@ -802,12 +802,12 @@
          "children":[
             {
                "name":"decode",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":0
       },
       {
@@ -817,12 +817,12 @@
          "children":[
             {
                "name":"doFilter",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.0163265306122449,
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":0
       },
       {
@@ -832,30 +832,30 @@
          "children":[
             {
                "name":"onError",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.0163265306122449,
                "type":"MethodNode"
             },
             {
                "name":"onClose",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
             {
                "name":"onJMSMessage",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
             {
                "name":"sendMarketSummary",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":0
       },
       {
@@ -886,7 +886,7 @@
          "children":[
             {
                "name":"getOrder",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.0163265306122449,
                "type":"MethodNode"
             },
@@ -913,12 +913,12 @@
          "children":[
             {
                "name":"getPortfolio",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.020408163265306124,
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":0
       },
       {
@@ -928,36 +928,36 @@
          "children":[
             {
                "name":"setPrice",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
             {
                "name":"setMarketValue",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
             {
                "name":"setGain",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
             {
                "name":"setBasis",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
             {
                "name":"setPurchasePrice",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":0
       },
       {
@@ -979,24 +979,24 @@
             },
             {
                "name":"doSell",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
             {
                "name":"doWelcome",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             },
             {
                "name":"doMarketSummary",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":0.3
       },
       {
@@ -1039,18 +1039,18 @@
             },
             {
                "name":"getOpenDate",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             },
             {
                "name":"getCompletionDate",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             }
          ],
-         "partition":"Market",
+         "partition":"Orders",
          "uncertainity":0.3333333333333333
       },
       {
@@ -1060,12 +1060,12 @@
          "children":[
             {
                "name":"getQuantity",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"Market",
+         "partition":"Orders",
          "uncertainity":0
       },
       {
@@ -1096,30 +1096,30 @@
          "children":[
             {
                "name":"getGainPercent",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.0163265306122449,
                "type":"MethodNode"
             },
             {
                "name":"getOpenTSIA",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.012244897959183675,
                "type":"MethodNode"
             },
             {
                "name":"getTSIA",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.0163265306122449,
                "type":"MethodNode"
             },
             {
                "name":"getSummaryDate",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             }
          ],
-         "partition":"Market",
+         "partition":"Orders",
          "uncertainity":0
       },
       {
@@ -1129,7 +1129,7 @@
          "children":[
             {
                "name":"access$000",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.0163265306122449,
                "type":"MethodNode"
             },
@@ -1141,18 +1141,18 @@
             },
             {
                "name":"access$200",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             },
             {
                "name":"access$008",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"Market",
+         "partition":"Orders",
          "uncertainity":2.25
       },
       {
@@ -1162,7 +1162,7 @@
          "children":[
             {
                "name":"hasPrevious",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             },
@@ -1174,24 +1174,24 @@
             },
             {
                "name":"next",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             },
             {
                "name":"hasNext",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             },
             {
                "name":"previous",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"Market",
+         "partition":"Orders",
          "uncertainity":1.8
       },
       {
@@ -1216,12 +1216,12 @@
          "children":[
             {
                "name":"produceTradeAction",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"Market",
+         "partition":"Orders",
          "uncertainity":0
       },
       {
@@ -1231,12 +1231,12 @@
          "children":[
             {
                "name":"isEmpty",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":0
       },
       {
@@ -1291,12 +1291,12 @@
          "children":[
             {
                "name":"encode",
-               "partition":6,
+               "partition":"Ping",
                "centrality":0,
                "type":"MethodNode"
             }
          ],
-         "partition":6,
+         "partition":"Ping",
          "uncertainity":0
       },
       {
@@ -1306,12 +1306,12 @@
          "children":[
             {
                "name":"updateProfile",
-               "partition":"Market",
+               "partition":"Orders",
                "centrality":0.00816326530612245,
                "type":"MethodNode"
             }
          ],
-         "partition":"Market",
+         "partition":"Orders",
          "uncertainity":0
       },
       {
@@ -1321,12 +1321,12 @@
          "children":[
             {
                "name":"doDecoding",
-               "partition":"partition2",
+               "partition":"Market",
                "centrality":0.004081632653061225,
                "type":"MethodNode"
             }
          ],
-         "partition":"partition2",
+         "partition":"Market",
          "uncertainity":0
       },
       {
