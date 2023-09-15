@@ -880,16 +880,16 @@ function setup(callOrigin) {
     //======================================
     //============Zoom on graph=============
     //======================================
-    svg.call(d3.zoom().on("zoom", function () {
-      svg.attr("transform", d3.event.transform)
-      var zoomScale = d3.event.transform.k
-      if (zoomScale > 1.2){
-        d3.selectAll(".nodeLabel").style("display","block")
-      }
-      else{
-        d3.selectAll(".nodeLabel").style("display","none")
-      }
-   }), {passive:false})
+  //   svg.call(d3.zoom().on("zoom", function () {
+  //     svg.attr("transform", d3.event.transform)
+  //     var zoomScale = d3.event.transform.k
+  //     if (zoomScale > 1.2){
+  //       d3.selectAll(".nodeLabel").style("display","block")
+  //     }
+  //     else{
+  //       d3.selectAll(".nodeLabel").style("display","none")
+  //     }
+  //  }), {passive:false})
     //======================================
     //============Click outside graph=======
     //======================================
@@ -1672,14 +1672,15 @@ svg.selectAll('.rect_placeholder')
     let webLink;
 
     function select(element,event){
-    let selectData = element.textContent;
-    inputBox.value = selectData;
-    icon.onclick = ()=>{
-        webLink = "https://www.google.com/search?q=" + selectData;
-        linkTag.setAttribute("href", webLink);
-        linkTag.click();
-    }
-    searchWrapper.classList.remove("active");
+      let selectData = element.textContent;
+      inputBox.value = selectData;
+
+      icon.onclick = ()=>{
+          webLink = "https://www.google.com/search?q=" + selectData;
+          linkTag.setAttribute("href", webLink);
+          linkTag.click();
+      }
+      searchWrapper.classList.remove("active");
     }
 
     function showSuggestions(list){
@@ -1712,7 +1713,19 @@ svg.selectAll('.rect_placeholder')
                // ticked()
               }
             })
-        }
+        } 
+        //or on enter
+        inputBox.addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+            nodes.forEach(function(node){
+              if (node.name == userData){
+                nodeClick(node)
+               // ticked()
+              }
+            })
+          }
+        });
+
         emptyArray = suggestions.filter((data)=>{
             //filtering array value and user characters to lowercase and return only those words which are start with user entered chars
             return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase()); 
@@ -1733,7 +1746,7 @@ svg.selectAll('.rect_placeholder')
               console.log("element is ",element)
               let selectData = element.textContent;
               inputBox.value = selectData;
-              icon.onclick = ()=>{
+              // icon.onclick = ()=>{
                   // webLink = "https://www.google.com/search?q=" + selectData;
                   // linkTag.setAttribute("href", webLink);
                   // linkTag.click();
@@ -1749,7 +1762,7 @@ svg.selectAll('.rect_placeholder')
                     }
                   })
 
-              }
+              // }
               searchWrapper.classList.remove("active");
 
           }
@@ -2166,9 +2179,24 @@ function polygonGenerator(groupId) {
     console.log("in open nav")
     if (type=="partition"){ //click on partition
       console.log("click on partition")
+      //data partition
+      if (d['groupId'] == "data"){
+        document.getElementById("numClassesLabel").innerText = "Number of tables"
+        document.getElementById("partitionClassList").innerText = "Tables"
+      }
+      else{
+        document.getElementById("numClassesLabel").innerText = "Number of classes"
+        document.getElementById("partitionClassList").innerText = "Classes"
+      }
+
+      //class partition
+
+
       d3.selectAll(".overviewMenu").style("display","none")
       d3.selectAll(".partitionMenu").style("display","block")
       d3.selectAll(".classMenu").style("display","none")
+
+
       d3.selectAll(".methodMenu").style("display","none")
 
       console.log("partition is ",d)
