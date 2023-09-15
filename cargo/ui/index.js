@@ -712,11 +712,11 @@ function setup(callOrigin) {
         var newX
         var newY
         nodes.forEach(function(n){
-          if (n.name == "com.ibm.websphere.samples.daytrader.web.jsf.AccountDataJSF"){
+          if (n.name == "AccountDataJSF"){
               console.log("found n ",n)
               newX = n.x
               newY = n.y
-              if (nodeClone.name == "Balance"){
+              if (nodeClone.partition == "Quote"){
                 console.log("newX is ",newX)
                 console.log("newY is ",newY)
                 nodeClone.fx = newX + 30;
@@ -725,6 +725,19 @@ function setup(callOrigin) {
                 nodeClone.y = newY
               }
           }
+          if (n.name == "AccountDataBean"){
+            console.log("found n ",n)
+            newX = n.x
+            newY = n.y
+            if (nodeClone.partition == "Account"){
+              console.log("newX is ",newX)
+              console.log("newY is ",newY)
+              nodeClone.fx = newX + 30;
+              nodeClone.fy = newY + 20;
+              nodeClone.x = newX 
+              nodeClone.y = newY
+            }
+        }
         })
       
         nodes.push(nodeClone) //push new node
@@ -734,11 +747,8 @@ function setup(callOrigin) {
         //loop through method links
         //if method link source or target is a method of current new class
         //replace parent link source/target name by new name
-        console.log("nodeChildren names is ",nodeChildrenNames)
-        console.log("linkData is ",linkData)
         linkData.forEach(function(link){
           if (link.source == nodeElem.name || link.target == nodeElem.name){
-            console.log("in if")
             //var methodLinks= link.children
             //split up method links into number of class links
             var methodLinks=[]
@@ -749,13 +759,10 @@ function setup(callOrigin) {
               var childLinkTargetList=methodLink.target.split(".")
               var childListLengthTarget=childLinkTargetList.length
               var childLinkTargetName = childLinkTargetList[childListLengthTarget-1]
-              console.log("child source name is ",childLinkSourceName)
-              console.log("child target name is ",childLinkTargetName)
               if (nodeChildrenNames.includes(childLinkTargetName) ||  nodeChildrenNames.includes(childLinkSourceName)){
                 methodLinks.push(methodLink)
               }
             })
-            console.log("method links is ",methodLinks)
             //if parent link doesn't already exist
             var foundLink=0
             linkData.forEach(function(link){
@@ -763,7 +770,6 @@ function setup(callOrigin) {
                 var linkChildren= link.children.concat(methodLinks)
                 foundLink=1
                 link.children=linkChildren
-                console.log("parent link found, it is ",link)
               }
             })
             if (foundLink == 0){
@@ -778,32 +784,24 @@ function setup(callOrigin) {
               parentLink.children= methodLinks
               if (methodLinks.length !=0){
                 linkData.push(parentLink)
-                console.log("parent link is ",parentLink)
               }
 
             }
           }
         })
       }
-    console.log("node elem name is ",nodeElem.name)
     //remove old links from link data
     var linkDataCopy = Object.assign([], linkData)//deep copy old class
-    console.log("linkDataCopy is ",linkDataCopy)
     linkData.forEach(function(link){
       if (link.source == nodeElem.name || link.target == nodeElem.name){
-        console.log("in if here")
         var thisLinkIndex = linkData.indexOf(link)
-        console.log("thisLinkIndex here ",thisLinkIndex)
-        console.log("link data length is ",linkDataCopy.length)
         //linkDataCopy.slice(thisLinkIndex)
         linkDataCopy = linkDataCopy.filter(function (linkCopy) {
           return linkCopy !== link;
         });
-        console.log("link data length is now ",linkDataCopy.length)
       }
     })
     linkData=linkDataCopy
-    console.log("linkData is ",linkData)
 
     links=[] //empty links
           //create original links
