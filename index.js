@@ -1102,7 +1102,7 @@ function setup(callOrigin) {
             Tooltip
             .style("left",d3.event.pageX + 10 +"px")
             .style("top", d3.event.pageY + 10 +"px")
-            .html("<br> Class name: " + node.name + "<br> Partition: " + node.partition + "<br> Uncertainty: " + node.classUncertainty)
+            .html("<br> Class name: " + node.name + "<br> Partition: " + node.partition + "<br> Confidence: " + node.classUncertainty)
           }
           else{ //method
             Tooltip
