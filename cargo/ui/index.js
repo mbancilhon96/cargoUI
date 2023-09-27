@@ -1102,7 +1102,7 @@ function setup(callOrigin) {
             Tooltip
             .style("left",d3.event.pageX + 10 +"px")
             .style("top", d3.event.pageY + 10 +"px")
-            .html("<br> Class name: " + node.name + "<br> Partition: " + node.partition + "<br> Uncertainty: " + node.classUncertainty)
+            .html("<br> Class name: " + node.name + "<br> Partition: " + node.partition + "<br> Confidence: " + node.classUncertainty)
           }
           else{ //method
             Tooltip
@@ -1129,6 +1129,7 @@ function setup(callOrigin) {
           Tooltip.style("display","none")
         })
         .on('contextmenu', (node) => { //right click 
+          event.preventDefault();
           if (node.type != "SQLTable"){ //only allow right click on code nodes
             if (node.isMethod != true){ //if node is a class, expand 
               force.stop();
@@ -1222,13 +1223,24 @@ function setup(callOrigin) {
         .classed("clicked", true)
         .classed("notClicked", false)
         
-
       //populate side menu
       var nodeChildren = this_node.children
 
+      // if (nodeChildren){ //class
+      //   openNav("class",this_node)
+      //   splitClass(this_node)
+      // }
       if (nodeChildren){ //class
-        openNav("class",this_node)
-        splitClass(this_node)
+        // openNav("class",this_node)
+        // splitClass(this_node)
+        if (this_node.type=="ClassNode"){ //class
+          openNav("class",this_node)
+          splitClass(this_node)
+        }
+        if (this_node.type=="SQLTable"){ //data
+          openNav("data",this_node)
+          // splitClass(this_node)
+        }
       }
       else{ //method
         openNav("method",this_node)
@@ -1322,11 +1334,17 @@ function setup(callOrigin) {
 
     function dragended(this_node) {
       //d3.event.sourceEvent.stopPropagation()
-
       this_node.x = d3.event.x;
       this_node.y = d3.event.y;
       //flag to differentiate between drag and click event
       if (isDragged == 1) {
+        //update confidence
+        this_node.classUncertainty = 1.0
+        //change opacity
+        svg.selectAll(".node")
+            .filter(function(n) { return n.name === this_node.name })
+            .style("opacity",1)
+
         // if (this_node.type=="ClassNode"){
         if (this_node.name=="TradeConfig"){
           d3.selectAll("#suggestionsDiv").style("display","block")
@@ -1365,7 +1383,16 @@ function setup(callOrigin) {
                   foundPartition="doNotDrag"
                 }
 
-                if (foundPartition == 1) {
+                //figure out if node was dragged to a different partition
+                var differentPartition
+                if (oldPartition == newPartitionName){
+                  differentPartition =0
+                }
+                else{
+                  differentPartition=1
+                }
+
+                if (foundPartition == 1 && differentPartition==1) {
                   d.partition=newPartitionName //destination partition
 
                   if (d.children) {//if class,
@@ -1416,23 +1443,7 @@ function setup(callOrigin) {
                     return updatedPartition.includes(item.groupId)
                   })
                   console.log("groupId is ",groupIds)
-                  // var partitionCount = {}
-                  // node.each(function(d) {
-                  //   if (!partitionCount[d.partition]){
-                  //     partitionCount[d.partition]= 1
-                  //   }
-                  //   else{
-                  //     partitionCount[d.partition]= partitionCount[d.partition]+1
-                  //   }
-                  // })
-                  // if (newPartitionName != oldPartition){ //if node is not just being moved inside its own partition
-                  //   //if old partition is empty, remove it from groupIds
-                  //   if (partitionCount[oldPartition] == 0){
-                  //     groupIds = groupIds.filter(function(item) {
-                  //       return item.groupId != oldPartition
-                  //     })
-                  //   }
-                  // }
+
                 } 
               console.log("other suggested partition is moved")
               makePartitions() //recreate partitions
@@ -1522,13 +1533,7 @@ function setup(callOrigin) {
             }
           }
         })
-        // movedNodes.forEach(function(movedNode){
-        //   console.log("movedNodes is here")
-        //   if (movedNode.name != this_node.name){
-        //     console.log("movedNode in if")
-        //     movedNodes.push(this_node)
-        //   }
-        // })
+
         movedNodes.push(this_node)
         console.log("movedNode here is ",movedNodes)
         isDragged = 0
@@ -2175,6 +2180,8 @@ function polygonGenerator(groupId) {
   //==================================================
   function openNav(type, d) {
     console.log("in open nav")
+    console.log("type is ",type)
+
     if (type=="partition"){ //click on partition
       console.log("click on partition")
       //data partition
@@ -2188,7 +2195,6 @@ function polygonGenerator(groupId) {
       }
 
       //class partition
-
 
       d3.selectAll(".overviewMenu").style("display","none")
       d3.selectAll(".partitionMenu").style("display","block")
@@ -2284,20 +2290,47 @@ function polygonGenerator(groupId) {
       })
 
     }
-    else if (type=="class"){ //click on class node
+    else if (type=="data"){ //click on data node
       d3.selectAll(".overviewMenu").style("display","none")
       d3.selectAll(".partitionMenu").style("display","none")
+      d3.selectAll(".methodMenu").style("display","none")
       d3.selectAll(".classMenu").style("display","block")
       d3.selectAll("#splitClassBtn").style("display","none") //don't display this one
-
-      d3.selectAll(".methodMenu").style("display","none")
+      d3.selectAll("#classUncertainty").style("display","none")
+      d3.selectAll("#classUncertaintyLabel").style("display","none")
       d3.select('#chartSVG').remove() //remove bar chart showing contained methods
+      d3.selectAll("#numMethodLabel").style("display","none")
+      d3.selectAll("#numMethod").style("display","none")
+      d3.selectAll("#methodPartitions").style("display","none")
+      d3.selectAll("#addClassBtn").style("display","none")
+      d3.selectAll("#favorites-table").style("display","none")
+
 
       document.getElementById("className").innerText = d.name
       document.getElementById("classPartition").innerText = d.partition
       document.getElementById("partitionSquare").setAttribute("style","vertical-align: middle; margin-top: 14px; color:"+colorPartition(d.partition))
 
-      document.getElementById("classUncertainty").innerText = "text"
+    }
+    else if (type=="class"){ //click on class node
+      d3.selectAll(".overviewMenu").style("display","none")
+      d3.selectAll(".partitionMenu").style("display","none")
+      d3.selectAll(".methodMenu").style("display","none")
+      d3.selectAll(".classMenu").style("display","block")
+      d3.selectAll("#splitClassBtn").style("display","none") //don't display this one
+      d3.selectAll("#classUncertainty").style("display","block")
+      d3.selectAll("#classUncertaintyLabel").style("display","block")
+      d3.select('#chartSVG').remove() //remove bar chart showing contained methods
+      d3.selectAll("#numMethodLabel").style("display","block")
+      d3.selectAll("#numMethod").style("display","block")
+      d3.selectAll("#methodPartitions").style("display","block")
+      d3.selectAll("#addClassBtn").style("display","block")
+      d3.selectAll("#favorites-table").style("display","block")
+
+      document.getElementById("className").innerText = d.name
+      document.getElementById("classPartition").innerText = d.partition
+      document.getElementById("partitionSquare").setAttribute("style","vertical-align: middle; margin-top: 14px; color:"+colorPartition(d.partition))
+
+      document.getElementById("classUncertainty").innerText = d.classUncertainty
       document.getElementById("numMethod").innerText = d.children.length
 
       //remove chart svg
